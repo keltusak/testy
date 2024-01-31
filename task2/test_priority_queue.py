@@ -1,6 +1,6 @@
 import pytest
 
-from task2.priority_queue import PriorityQueue
+from priority_queue import PriorityQueue
 
 
 def test_push():

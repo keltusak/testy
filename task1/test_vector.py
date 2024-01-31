@@ -1,6 +1,6 @@
 import pytest
 
-from task1.vector import Vector
+from vector import Vector
 
 
 @pytest.fixture
@@ -32,3 +32,10 @@ def test_equality(vectors):
     v1, v2 = vectors
     assert v1 == Vector(1, 2)
     assert not v1 == v2
+
+"""
+def test_multiplication_by_vector(vectors):
+    v1, v2 = vectors
+    result = v1 * v2
+    assert result == Vector(3, 8)
+"""

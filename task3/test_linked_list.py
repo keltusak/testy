@@ -1,4 +1,4 @@
-from task3.linked_list import DoublyLinkedList
+from linked_list import DoublyLinkedList
 
 
 def test_length():
