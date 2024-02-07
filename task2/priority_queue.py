@@ -3,11 +3,12 @@ class PriorityQueue:
     def __init__(self):
             self.queue = []
 
-    def __iter__(self):
-            return iter(self.queue)
-
     def __len__(self):
-            return len(self.queue)
+        return len(self.queue)
+    
+    def __iter__(self):
+            self.position = 0
+            return iter
         
     def push(self, priority, task):
             self.queue.append(priority)
