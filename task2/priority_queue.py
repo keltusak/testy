@@ -1,25 +1,26 @@
+import sys
+
+
 class PriorityQueue:
-    
     def __init__(self):
-            self.queue = []
+        self.queue = []
 
     def __len__(self):
         return len(self.queue)
-    
+
     def __iter__(self):
-            self.position = 0
-            return iter
-        
-    def push(self, priority, task):
-            self.queue.append(priority)
-    
-    def __next__(self):
-          if self.position < len(self.queue):
-                queue = self.queue[self.position]
-                self.position += 1
-                return queue
-          else:
-                raise StopIteration
+        return iter([task[0] for task in self.queue])
+
+    def push(self, task_name, priority):
+        self.queue.append((task_name, priority))
+        self.queue.sort(key=lambda x: x[1])  # Seřadí frontu podle priority
+
+    def pop(self):
+        if len(self.queue) == 0:
+            raise IndexError("Priority queue is empty")
+
+        task_name, _ = self.queue.pop(0)  # Při odstraňování vrátíme pouze název úkolu
+        return task_name
           
 
 
