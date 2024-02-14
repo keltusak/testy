@@ -13,7 +13,11 @@ class PriorityQueue:
 
     def push(self, task_name, priority):
         self.queue.append((task_name, priority))
-        self.queue.sort(key=lambda x: x[1])  # Seřadí frontu podle priority
+
+        def fce(x):
+            return x [1]
+        
+        self.queue.sort(key=fce)
 
     def pop(self):
         if len(self.queue) == 0:
