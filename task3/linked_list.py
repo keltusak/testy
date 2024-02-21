@@ -27,11 +27,11 @@ class DoublyLinkedList:
     def insert(self, data, index):
         index = self.translate_index(index)
 
-        if index == self.length:  # na konci
+        if index == self.length: 
             self.append(data)
             return
 
-        if index == 0:  # na začátku
+        if index == 0:  
             if len(self) == 0:
                 self.append(data)
                 return
