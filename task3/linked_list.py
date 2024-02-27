@@ -1,8 +1,8 @@
 class Node:
-    def __init__(self, prev_node=None, data=None, next_node=None):
+    def __init__(self, prev=None, data=None, nxt=None):
         self.data = data
-        self.next_node = next_node
-        self.prev_node = prev_node
+        self.nxt = nxt
+        self.prev = prev
 
 class DoublyLinkedList:
     def __init__(self):
@@ -20,7 +20,7 @@ class DoublyLinkedList:
             return
 
         node = Node(self.tail, data, None)
-        self.tail.next_node = node
+        self.tail.nxt = node
         self.tail = node
         self.length += 1
 
@@ -37,25 +37,25 @@ class DoublyLinkedList:
                 return
 
             node = Node(None, data, self.head)
-            self.head.prev_node = node
+            self.head.prev = node
             self.head = node
             self.length += 1
             return
 
-        prev_node = self.get_node(index - 1)
-        node = Node(prev_node, data, prev_node.next_node)
-        prev_node.next_node.prev_node = node
-        prev_node.next_node = node
+        prev = self.get_node(index - 1)
+        node = Node(prev, data, prev.nxt)
+        prev.nxt.prev = node
+        prev.nxt = node
         self.length += 1
 
     def __iter__(self):
-        ls = [self.head.data]
+        data_list = [self.head.data]
         last = self.head
         for _ in range(len(self) - 1):
-            ls.append(last.next_node.data)
-            last = last.next_node
+            data_list.append(last.nxt.data)
+            last = last.nxt
 
-        return iter(ls)
+        return iter(data_list)
 
     def __len__(self):
         return self.length
@@ -71,9 +71,9 @@ class DoublyLinkedList:
         index = self.translate_index(index)
         node = self.get_node(index)
 
-        prev = node.prev_node
-        node.prev_node.next_node = node.next_node
-        node.next_node.prev_node = prev
+        prev = node.prev
+        node.prev.nxt = node.nxt
+        node.nxt.prev = prev
         self.length -= 1
 
     def translate_index(self, index):
@@ -92,7 +92,7 @@ class DoublyLinkedList:
 
         for i in range(len(self) - 1):
             if i == index - 1:
-                return last.next_node
-            last = last.next_node
+                return last.nxt
+            last = last.nxt
 
         raise IndexError
